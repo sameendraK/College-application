@@ -1,0 +1,296 @@
+###get
+GET http://localhost:3000/products
+###post
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+    "name":"iStick",
+    "price":72
+}
+###delete
+DELETE http://localhost:3000/products
+###get by ID
+GET http://localhost:3000/products/6517cb9eaad5123031aa2844
+###post by ID
+POST http://localhost:3000/products/id
+###delete by ID
+DELETE  http://localhost:3000/products/65190616ee8d578db13af9a2
+### sending
+GET http://localhost:3000/test/123/34
+###
+POST http://localhost:3000/test
+Content-Type: application/json
+
+{
+    "name":"iStick",
+    "price":444
+}
+-------------------------------------------------------------------------------------------------
+
+--------------------
+STUDENTS (create, login,logout,delete)
+--------------------
+### CREATE a student
+POST http://localhost:3000/student/create
+Content-Type: application/json
+
+{
+    "name":"studentA1",
+    "password":"studentA1Password",
+    "type":"Student"
+}
+### LOGIN
+POST http://localhost:3000/login/
+Content-Type: application/json
+
+{
+    "userType":"Student",
+    "userName":"studentA1",
+    "password":"studentA1Password"
+}
+
+### LOGOUT 
+POST http://localhost:3000/logout
+Content-Type: application/json
+
+{
+    "userName":"studentA1"
+}
+
+### GET available slots for students
+GET http://localhost:3000/student/getAvailableSlots
+
+Content-Type: application/json
+{
+    "userName":"dean1A"
+}
+
+### DELETE all students
+DELETE  http://localhost:3000/student/deleteAllStudents
+
+--------------------
+EMPLOYEE (create,view)
+--------------------
+### GET available slots
+GET http://localhost:3000/employee/viewBookedSlots
+
+Content-Type: application/json
+{
+    "name":"dean1A"
+}
+
+### CREATE employee
+POST http://localhost:3000/employee/create
+
+Content-Type: application/json
+{
+    "name":"dean1A",
+    "password":"dean1APass",
+    "type":"Employee"
+}
+-------------------------
+SLOTS (create,book)
+-------------------------
+### CREATE a slot
+POST http://localhost:3000/slots/createSlot
+Content-Type: application/json
+
+{
+    "name":"deanA",
+    "slotTime":"10-11-2009 4:20 PM"
+}
+
+### BOOK a slot
+POST http://localhost:3000/slots/bookSlot
+Content-Type: application/json
+
+{
+    "employeeName":"dean1A",    
+    "slot":"4/12/2023 5:33 P.M",
+    "studentName":"student1A"
+}
+
+### AVAILABLE slots is now divided for student and employee.
+# GET http://localhost:3000/slots/getAvailableSlots
+# Content-Type: application/json
+
+# {   
+#     "userType":"Employee"
+# }
+
+### DELETE all slots
+DELETE http://localhost:3000/slots/deleteAllSlots
+
+Content-Type: application/json
+
+
+{
+
+}
+
+### CREATE a student
+POST http://localhost:3000/student/create
+Content-Type: application/json
+
+{
+    "name":"studentM1",
+    "password":"studentM1Password",
+    "type":"Student"
+}
+
+### CREATE a student
+POST http://localhost:3000/student/create
+Content-Type: application/json
+
+{
+    "name":"studentM2",
+    "password":"studentM2Password",
+    "type":"Student"
+}
+
+### CREATE employee
+POST http://localhost:3000/employee/create
+Content-Type: application/json
+{
+    "name":"deanM1",
+    "password":"deanM1Password",
+    "type":"Employee"
+}
+
+### LOGIN
+POST http://localhost:3000/login/
+Content-Type: application/json
+
+{
+    "type":"Student",
+    "name":"studentM1",
+    "password":"studentM1Password"
+}
+
+###create SLOT 
+POST http://localhost:3000/student/getAvailableSlots
+{
+    "employeeName":"deanM1",    
+    "slot":"11/2/2023 10:00 AM",
+    "loggedInUser":"studentM1"
+}
+###create SLOT 
+POST http://localhost:3000/student/getAvailableSlots
+{
+    "employeeName":"deanM1",    
+    "slot":"11/2/2023 11:00 AM",
+    "loggedInUser":"studentM1"
+}
+### GET available slots for students
+GET http://localhost:3000/student/getAvailableSlots
+
+Content-Type: application/json
+{
+
+}
+
+### BOOK a slot
+POST http://localhost:3000/slots/bookSlot
+Content-Type: application/json
+
+{
+    "employeeName":"deanM1",    
+    "slot":"4/12/2023 5:33 PM",
+    "studentName":"studentM1"
+}
+
+### DEAN LOGIN
+POST http://localhost:3000/login/
+Content-Type: application/json
+
+{
+    "userType":"Employee",
+    "userName":"dean1A",
+    "password":"dean1APassword"
+}
+
+### GET available slots (sees only one booking of student1A).
+GET http://localhost:3000/employee/viewBookedSlots
+
+Content-Type: application/json
+{
+    "name":"dean1A"
+}
+
+### LOGOUT of Dean.
+POST http://localhost:3000/logout/
+
+Content-Type: application/json
+{
+    "name":"dean1A"
+}
+
+
+### LOGIN
+POST http://localhost:3000/login/
+Content-Type: application/json
+
+{
+    "userType":"Student",
+    "userName":"studentM2",
+    "password":"studentM2Password"
+}
+
+
+### GET available slots for students
+GET http://localhost:3000/student/getAvailableSlots
+
+Content-Type: application/json
+{
+
+}
+
+
+### BOOK a slot (student B)
+POST http://localhost:3000/slots/bookSlot
+Content-Type: application/json
+
+{
+    "employeeName":"dean1A",    
+    "slot":"4/12/2023 5:33 P.M",
+    "studentName":"studentM2"
+}
+
+### DEAN LOGIN (
+POST http://localhost:3000/login/
+Content-Type: application/json
+
+{
+    "userType":"Employee",
+    "userName":"dean1A",
+    "password":"dean1APassword"
+}
+
+### GET available slots (sees both booking of studentM1 and studentA2).
+GET http://localhost:3000/employee/viewBookedSlots
+
+Content-Type: application/json
+{
+    "name":"dean1A"
+}
+
+// CHANGE THE TIME IN DB TO PASSED TIME.
+
+### LOGOUT of Dean.
+POST http://localhost:3000/logout/
+
+Content-Type: application/json
+{
+    "name":"dean1A"
+}
+
+### DEAN LOGIN (sees only studentB).
+POST http://localhost:3000/login/
+Content-Type: application/json
+
+{
+    "userType":"Employee",
+    "userName":"dean1A",
+    "password":"dean1APassword"
+}
